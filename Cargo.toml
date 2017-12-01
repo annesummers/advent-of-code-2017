@@ -1,0 +1,6 @@
+[package]
+name = "avdent-of-code-2017"
+version = "0.1.0"
+authors = ["Anne Summers <annesummers@onebadmouse.com>"]
+
+[dependencies]
