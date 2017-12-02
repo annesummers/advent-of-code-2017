@@ -6,6 +6,7 @@ pub fn run() {
 
     part1(&lines);
     part2(&lines);
+    part2_recursive(&lines);
 
     part1(&read_values(&"5 1 9 5\n7 5 3\n2 4 6 8"));
     part2(&read_values(&"5 9 2 8\n9 4 7 3\n3 8 6 5"));
@@ -65,4 +66,30 @@ fn part2(lines: &Vec<Vec<u32>>) {
     }
 
     println!("New checksum {}", sum);
+}
+
+fn part2_recursive(lines: &Vec<Vec<u32>>) {
+    let sum: u32 = lines
+        .iter()
+        .map(|line| find_divisor(line))
+        .collect::<Vec<u32>>()
+        .iter()
+        .sum();
+
+    println!("New checksum recursive {}", sum);
+}
+
+fn find_divisor(line: &Vec<u32>) -> u32 {
+    match line.split_first() {
+        None => return 0,
+        Some((comp, line)) => {
+            for value in line {
+                if *comp % *value == 0 {
+                    return *comp / *value;
+                }
+            }
+
+            return find_divisor(&line.to_vec());
+        },
+    };
 }
