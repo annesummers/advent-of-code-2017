@@ -11,7 +11,10 @@ pub fn run() {
 }
 
 fn calculate_matches(str_inputs: &str) {
-    let inputs: Vec<u32> = str_inputs.chars().map(|c| c.to_digit(10).unwrap()).collect();
+    let inputs: Vec<u32> = str_inputs
+                            .chars()
+                            .map(|c| c.to_digit(10).unwrap())
+                            .collect();
     let length = inputs.len();
 
     let mut half_way: usize = (length/2) as usize;
