@@ -59,6 +59,8 @@ pub fn part1(data_pos: u32) -> u32 {
     return 0;
 }
 
+// algorithm from oeis https:://oeis.org/A141481 Klaus Brockhaus
+
 fn part2_again_again(input: u32) -> u32 {
     let m: usize= 6;
     let h: usize = 2*m;
