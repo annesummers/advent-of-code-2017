@@ -4,6 +4,8 @@ mod day2;
 mod day3;
 mod day4;
 
+extern crate time;
+
 fn main() {
     let today = 4;
 
