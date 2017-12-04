@@ -1,5 +1,3 @@
-use std::num::*;
-
 pub fn run() {
 
     println!("Steps {}", part1(string_to_int("1")));
@@ -78,33 +76,35 @@ fn part2_again_again(input: u32) -> u32 {
 
     let t = vec![(1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1)];
 
-    let mut n: i32 = 1;
+    let mut index: i32 = 1;
     let mut g: i32;
-    let mut r: i32;
+    let mut ring_index: i32;
     let mut q: i32;
-    let mut d: i32;
+    let mut ring_position_index: i32;
 
     let mut j: i32;
     let mut k: i32;
 
     loop {
-        g = isqrt(n as f64) as i32;
-        r = (g + g%2)/2;
-        q = 4 * (r as f32).powi(2) as i32;
-        d = n as i32 - q;
+        g = isqrt(index as f64) as i32;
+        ring_index = (g + g%2)/2;
+        q = 4 * (ring_index as f32).powi(2) as i32;
+        ring_position_index = index as i32 - q;
 
-        if n <= q - 2 * r {
-            j = d + 3 * r;
-            k = r;
-        } else if n <= q {
-            j = r;
-            k = -d - r;
-        } else if n <= q + 2 * r {
-            j = r - d;
-            k = -r;
+        println!("index {}, ring index {}, ring position index {}, g {}, q {}", index, ring_index, ring_position_index, g, q);
+
+        if index <= q - 2 * ring_index {
+            j = ring_position_index + 3 * ring_index;
+            k = ring_index;
+        } else if index <= q {
+            j = ring_index;
+            k = -ring_position_index - ring_index;
+        } else if index <= q + 2 * ring_index {
+            j = ring_index - ring_position_index;
+            k = -ring_index;
         } else {
-            j = -r;
-            k = d - 3 * r;
+            j = -ring_index;
+            k = ring_position_index - 3 * ring_index;
         }
 
         j = j + m as i32;
@@ -129,10 +129,8 @@ fn part2_again_again(input: u32) -> u32 {
             return s;
         }
 
-        n +=1;
+        index +=1;
     }
-
-    return 0;
 }
 
 fn isqrt(num: f64) -> i32 {
